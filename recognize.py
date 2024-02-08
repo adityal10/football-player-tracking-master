@@ -21,7 +21,13 @@ import datetime
 
 
 class Recognize:
+    """
+        The Recognize class is designed for image recognition using a pre-trained neural network model.
+    """
     def __init__(self):
+        """
+        Initializes the Recognize object by loading necessary configurations and the pre-trained model.
+        """
         self.means = json.loads(open(config.DATASET_MEAN).read())
         self.index = json.loads(open(config.PLAYER_INDEX).read())
         self.modelpath = os.path.join(config.MODEL_PATH, 'model.hdf5')
@@ -31,6 +37,9 @@ class Recognize:
         self.iap = ImageToArrayPreprocessor()
 
     def recognize(self, img, raw=False):
+        """
+        Recognizes the content of an input image and returns the predicted labels and confidence score.
+        """
         #K.set_session(tf.keras.backend.get_session())
         if raw:
             image = cv2.imread(img)
